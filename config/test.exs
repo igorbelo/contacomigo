@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :conta_comigo, ContaComigo.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "igorbelo",
-  password: "",
+  username: "test",
+  password: "test",
   database: "conta_comigo_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
