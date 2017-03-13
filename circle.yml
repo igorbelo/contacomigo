@@ -20,8 +20,7 @@ dependencies:
     - echo "elixir 1.3.2" >> .tool-versions
     - erlang_version=$(awk '/erlang/ { print $2 }' .tool-versions) && asdf install erlang ${erlang_version}
     - elixir_version=$(awk '/elixir/ { print $2 }' .tool-versions) && asdf install elixir ${elixir_version}
-    - psql -c "CREATE user test with password 'test'";
-    - psql -c "GRANT ALL PRIVILEGES ON DATABASE conta_comigo_test to test;";
+    - psql -c "CREATE USER test with password 'test' SUPERUSER";
     - yes | mix deps.get
     - yes | mix local.rebar
 
