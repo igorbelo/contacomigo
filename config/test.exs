@@ -12,8 +12,12 @@ config :logger, level: :warn
 # Configure your database
 config :conta_comigo, ContaComigo.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "igorbelo",
+  password: "icb14cl43",
   database: "conta_comigo_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :junit_formatter,
+  report_file: "results.xml",
+  print_report_file: true
