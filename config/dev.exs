@@ -37,7 +37,7 @@ config :phoenix, :stacktrace_depth, 20
 config :conta_comigo, ContaComigo.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "igorbelo",
-  password: "icb14cl43",
+  password: "",
   database: "conta_comigo_dev",
   hostname: "localhost",
   pool_size: 10

@@ -13,7 +13,7 @@ config :logger, level: :warn
 config :conta_comigo, ContaComigo.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "igorbelo",
-  password: "icb14cl43",
+  password: "",
   database: "conta_comigo_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
