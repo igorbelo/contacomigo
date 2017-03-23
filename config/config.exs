@@ -25,3 +25,25 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+# %% Coherence Configuration %%   Don't remove this line
+config :coherence,
+  user_schema: ContaComigo.User,
+  repo: ContaComigo.Repo,
+  module: ContaComigo,
+  logged_out_url: "/",
+  opts: [:registerable, :authenticatable]
+# %% End Coherence Configuration %%
+
+config :ex_admin,
+  repo: ContaComigo.Repo,
+  module: ContaComigo,
+  modules: [
+    ContaComigo.ExAdmin.Dashboard,
+    ContaComigo.ExAdmin.Product,
+    ContaComigo.ExAdmin.Customer,
+    ContaComigo.ExAdmin.Order,
+    ContaComigo.ExAdmin.LineItem
+  ]
+
+config :xain, :after_callback, {Phoenix.HTML, :raw}
