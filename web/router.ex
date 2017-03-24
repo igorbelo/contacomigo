@@ -16,6 +16,17 @@ defmodule ContaComigo.Router do
     plug :accepts, ["json"]
   end
 
+  # Other scopes may use custom stacks.
+  scope "/api", ContaComigo.Api do
+    pipe_through :api
+
+    resources "/products", ProductController, except: [:new, :edit]
+    resources "/customers", CustomerController, except: [:new, :edit]
+    resources "/orders", OrderController, except: [:new, :edit]
+    resources "/addresses", AddressController, except: [:new, :edit]
+    resources "/line_items", LineItemController, except: [:new, :edit]
+  end
+
   scope "/" do
     pipe_through :browser
     coherence_routes()
@@ -25,9 +36,4 @@ defmodule ContaComigo.Router do
     pipe_through :browser # Use the default browser stack
     admin_routes()
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ContaComigo do
-  #   pipe_through :api
-  # end
 end
