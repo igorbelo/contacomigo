@@ -10,6 +10,12 @@ defmodule ContaComigo.Api.AddressView do
   end
 
   def render("address.json", %{address: address}) do
-    %{id: address.id}
+    %{
+      id: address.id,
+      state: address.state,
+      city: address.city,
+      line1: address.line1,
+      zip_code: address.zip_code,
+    }
   end
 end

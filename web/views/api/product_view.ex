@@ -10,6 +10,6 @@ defmodule ContaComigo.Api.ProductView do
   end
 
   def render("product.json", %{product: product}) do
-    %{id: product.id}
+    %{id: product.id, name: product.name, price: product.price}
   end
 end

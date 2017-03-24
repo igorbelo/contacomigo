@@ -4,7 +4,7 @@ defmodule ContaComigo.Api.OrderController do
   alias ContaComigo.Order
 
   def index(conn, _params) do
-    orders = Repo.all(Order)
+    orders = Repo.all(Order) |> Repo.preload([:customer, :line_items])
     render(conn, "index.json", orders: orders)
   end
 
@@ -25,7 +25,7 @@ defmodule ContaComigo.Api.OrderController do
   end
 
   def show(conn, %{"id" => id}) do
-    order = Repo.get!(Order, id)
+    order = Repo.get!(Order, id) |> Repo.preload([:customer, :line_items])
     render(conn, "show.json", order: order)
   end
 

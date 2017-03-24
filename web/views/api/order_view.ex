@@ -10,6 +10,14 @@ defmodule ContaComigo.Api.OrderView do
   end
 
   def render("order.json", %{order: order}) do
-    %{id: order.id}
+    %{
+      id: order.id,
+      customer: render_one(
+        order.customer, ContaComigo.Api.CustomerView, "customer.json"
+      ),
+      items: render_many(
+        order.line_items, ContaComigo.Api.LineItemView, "line_item.json"
+      )
+    }
   end
 end
