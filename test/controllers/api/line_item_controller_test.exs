@@ -1,7 +1,7 @@
 defmodule ContaComigo.Api.LineItemControllerTest do
   use ContaComigo.ConnCase
 
-  alias ContaComigo.Api.LineItem
+  alias ContaComigo.LineItem
   @valid_attrs %{}
   @invalid_attrs %{}
 

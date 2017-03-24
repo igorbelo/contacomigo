@@ -1,7 +1,7 @@
 defmodule ContaComigo.Api.ProductControllerTest do
   use ContaComigo.ConnCase
 
-  alias ContaComigo.Api.Product
+  alias ContaComigo.Product
   @valid_attrs %{}
   @invalid_attrs %{}
 

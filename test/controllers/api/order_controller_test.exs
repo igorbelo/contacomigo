@@ -1,7 +1,7 @@
 defmodule ContaComigo.Api.OrderControllerTest do
   use ContaComigo.ConnCase
 
-  alias ContaComigo.Api.Order
+  alias ContaComigo.Order
   @valid_attrs %{}
   @invalid_attrs %{}
 

@@ -1,7 +1,7 @@
 defmodule ContaComigo.Api.CustomerControllerTest do
   use ContaComigo.ConnCase
 
-  alias ContaComigo.Api.Customer
+  alias ContaComigo.Customer
   @valid_attrs %{}
   @invalid_attrs %{}
 

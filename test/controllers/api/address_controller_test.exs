@@ -1,7 +1,7 @@
 defmodule ContaComigo.Api.AddressControllerTest do
   use ContaComigo.ConnCase
 
-  alias ContaComigo.Api.Address
+  alias ContaComigo.Address
   @valid_attrs %{}
   @invalid_attrs %{}
 
