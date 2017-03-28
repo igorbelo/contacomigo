@@ -10,7 +10,8 @@ defmodule ContaComigo.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
-     deps: deps()]
+     deps: deps(),
+     preferred_cli_env: [espec: :test]]
   end
 
   # Configuration for the OTP application.
@@ -23,7 +24,7 @@ defmodule ContaComigo.Mixfile do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "web", "test/support", "spec/support"]
   defp elixirc_paths(_),     do: ["lib", "web"]
 
   # Specifies your project dependencies.
@@ -32,7 +33,8 @@ defmodule ContaComigo.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0.0"},
+     {:ecto, "~> 2.0", override: true},
+     {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
@@ -40,7 +42,9 @@ defmodule ContaComigo.Mixfile do
      {:cowboy, "~> 1.0"},
      {:junit_formatter, ">= 0.0.0"},
      {:coherence, "~> 0.3"},
-     {:ex_admin, "~> 0.8"}]
+     {:ex_admin, "~> 0.8"},
+     {:ex_machina, "~> 2.0"},
+     {:espec, "~> 1.3.3", only: :test}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
@@ -52,6 +56,6 @@ defmodule ContaComigo.Mixfile do
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
      "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+     "test": ["ecto.create --quiet", "ecto.migrate", "espec"]]
   end
 end
