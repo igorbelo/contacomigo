@@ -44,7 +44,8 @@ defmodule ContaComigo.Mixfile do
      {:coherence, "~> 0.3"},
      {:ex_admin, "~> 0.8"},
      {:ex_machina, "~> 2.0"},
-     {:espec, "~> 1.3.3", only: :test}]
+     {:espec, "~> 1.3.3", only: :test},
+     {:espec_junit_formatter, "~> 0.1", only: :test}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
