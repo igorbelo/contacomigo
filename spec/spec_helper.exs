@@ -8,6 +8,8 @@ ESpec.configure fn(config) ->
   end
 
   config.formatters [
-    {ESpec.JUnitFormatter, %{out_path: "_build/test/lib/conta_comigo/results.xml"}}
+    {ESpec.JUnitFormatter, %{out_path: "_build/test/lib/conta_comigo/results.xml"}},
+    {ESpec.Formatters.Html, %{out_path: "_build/test/lib/conta_comigo/results.html"}},
+    {ESpec.Formatters.Doc, %{}}
   ]
 end

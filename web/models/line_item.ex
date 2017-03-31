@@ -14,7 +14,7 @@ defmodule ContaComigo.LineItem do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:quantity])
-    |> validate_required([:quantity])
+    |> cast(params, [:order_id, :product_id, :quantity])
+    |> validate_required([:order_id, :product_id, :quantity])
   end
 end

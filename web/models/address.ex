@@ -16,7 +16,7 @@ defmodule ContaComigo.Address do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:state, :city, :zip_code, :line1])
-    |> validate_required([:state, :city, :zip_code, :line1])
+    |> cast(params, [:state, :city, :zip_code, :line1, :customer_id])
+    |> validate_required([:state, :city, :zip_code, :line1, :customer_id])
   end
 end

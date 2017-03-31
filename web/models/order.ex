@@ -13,7 +13,7 @@ defmodule ContaComigo.Order do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [])
-    |> validate_required([])
+    |> cast(params, [:customer_id])
+    |> validate_required([:customer_id])
   end
 end
