@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/igorbelo/contacomigo.png?label=ready&title=Ready)](https://waffle.io/igorbelo/contacomigo)
 # ContaComigo
 
 To start your Phoenix app:
