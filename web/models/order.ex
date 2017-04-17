@@ -4,6 +4,7 @@ defmodule ContaComigo.Order do
   schema "orders" do
     has_many :line_items, ContaComigo.LineItem
     belongs_to :customer, ContaComigo.Customer
+    belongs_to :store, ContaComigo.Store
 
     timestamps()
   end
@@ -13,7 +14,7 @@ defmodule ContaComigo.Order do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:customer_id])
-    |> validate_required([:customer_id])
+    |> cast(params, [:customer_id, :store_id])
+    |> validate_required([:customer_id, :store_id])
   end
 end

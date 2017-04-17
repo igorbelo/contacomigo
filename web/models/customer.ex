@@ -7,6 +7,7 @@ defmodule ContaComigo.Customer do
     field :email, :string
     field :phone, :string
     has_many :addresses, ContaComigo.Address
+    belongs_to :store, ContaComigo.Store
 
     timestamps()
   end
@@ -16,7 +17,7 @@ defmodule ContaComigo.Customer do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:first_name, :last_name, :email, :phone])
-    |> validate_required([:first_name, :last_name, :email, :phone])
+    |> cast(params, [:first_name, :last_name, :email, :phone, :store_id])
+    |> validate_required([:first_name, :last_name, :email, :phone, :store_id])
   end
 end

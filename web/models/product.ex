@@ -4,6 +4,7 @@ defmodule ContaComigo.Product do
   schema "products" do
     field :name, :string
     field :price, :decimal
+    belongs_to :store, ContaComigo.Store
 
     timestamps()
   end
@@ -13,7 +14,7 @@ defmodule ContaComigo.Product do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :price])
-    |> validate_required([:name, :price])
+    |> cast(params, [:name, :price, :store_id])
+    |> validate_required([:name, :price, :store_id])
   end
 end
