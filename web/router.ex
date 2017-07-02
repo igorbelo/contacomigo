@@ -44,6 +44,7 @@ defmodule ContaComigo.Router do
     pipe_through :public_api
 
     post "/sessions", SessionController, :create
+    post "/registrations", RegistrationController, :create
   end
 
   scope "/" do

@@ -6,6 +6,6 @@ defmodule ContaComigo.Api.SessionView do
   end
 
   def render("not_found.json", params) do
-    %{data: params["email"]}
+    %{error: true, message: "User not found"}
   end
 end
