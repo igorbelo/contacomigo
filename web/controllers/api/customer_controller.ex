@@ -5,7 +5,7 @@ defmodule ContaComigo.Api.CustomerController do
   alias ContaComigo.Store
 
   def index(conn, _params) do
-    customers = Repo.all(Customer) |> Repo.preload(orders: :line_items)
+    customers = Repo.all(Customer) |> Repo.preload(orders: [line_items: :product])
     render(conn, "index.json", customers: customers)
   end
 
@@ -15,7 +15,7 @@ defmodule ContaComigo.Api.CustomerController do
 
     case Repo.insert(changeset) do
       {:ok, customer} ->
-        customer = Repo.preload(customer, orders: :line_items)
+        customer = Repo.preload(customer, orders: [line_items: :product])
         conn
         |> put_status(:created)
         |> put_resp_header("location", customer_path(conn, :show, customer))

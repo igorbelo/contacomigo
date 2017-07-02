@@ -11,7 +11,7 @@ defmodule ContaComigo.Api.LineItemView do
 
   def render("line_item.json", %{line_item: line_item}) do
     %{
-      product_id: line_item.product_id,
+      product_id: render_one(line_item.product, ContaComigo.Api.ProductView, "product.json"),
       quantity: line_item.quantity
     }
   end
