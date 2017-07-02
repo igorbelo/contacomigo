@@ -1,5 +1,7 @@
 defmodule ContaComigo.Order do
   use ContaComigo.Web, :model
+  alias ContaComigo.LineItem
+  alias ContaComigo.Repo
 
   schema "orders" do
     has_many :line_items, ContaComigo.LineItem
@@ -9,6 +11,17 @@ defmodule ContaComigo.Order do
     field :date, Ecto.Date
 
     timestamps()
+  end
+
+  def total(order) do
+    items = from(i in LineItem, where: i.order_id == ^order.id)
+    |> Repo.all()
+    |> Repo.preload([:product, :order])
+    x = if length(items) > 0 do
+      Enum.reduce(items, fn(item, acc) -> 1 + acc end)
+    else
+      0
+    end
   end
 
   @doc """

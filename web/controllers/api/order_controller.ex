@@ -13,6 +13,7 @@ defmodule ContaComigo.Api.OrderController do
 
     case Repo.insert(changeset) do
       {:ok, order} ->
+        order = Repo.preload(order, [:customer, :line_items])
         conn
         |> put_status(:created)
         |> put_resp_header("location", order_path(conn, :show, order))
