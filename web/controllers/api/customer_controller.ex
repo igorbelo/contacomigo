@@ -2,6 +2,7 @@ defmodule ContaComigo.Api.CustomerController do
   use ContaComigo.Web, :controller
 
   alias ContaComigo.Customer
+  alias ContaComigo.Store
 
   def index(conn, _params) do
     customers = Repo.all(Customer) |> Repo.preload(orders: :line_items)
@@ -9,10 +10,12 @@ defmodule ContaComigo.Api.CustomerController do
   end
 
   def create(conn, %{"customer" => customer_params}) do
-    changeset = Customer.changeset(%Customer{}, customer_params)
+    store = Repo.get_by(Store, user_id: conn.assigns[:user_id])
+    changeset = Customer.changeset(%Customer{store_id: store.id}, customer_params)
 
     case Repo.insert(changeset) do
       {:ok, customer} ->
+        customer = Repo.preload(customer, orders: :line_items)
         conn
         |> put_status(:created)
         |> put_resp_header("location", customer_path(conn, :show, customer))
