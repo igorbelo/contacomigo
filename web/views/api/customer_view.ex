@@ -18,4 +18,13 @@ defmodule ContaComigo.Api.CustomerView do
       orders: render_many(customer.orders, ContaComigo.Api.OrderView, "customer_order.json")
     }
   end
+
+  def render("order_customer.json", %{customer: customer}) do
+    %{
+      id: customer.id,
+      name: customer.name,
+      email: customer.email,
+      phone: customer.phone
+    }
+  end
 end
