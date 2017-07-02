@@ -21,19 +21,29 @@ defmodule ContaComigo.Router do
     plug Coherence.Authentication.Session, protected: true
   end
 
-  pipeline :api do
+  pipeline :public_api do
+    plug :accepts, ["json"]
+  end
+
+  pipeline :protected_api do
     plug :accepts, ["json"]
   end
 
   # Other scopes may use custom stacks.
   scope "/api", ContaComigo.Api do
-    pipe_through :api
+    pipe_through :protected_api
 
     resources "/products", ProductController, except: [:new, :edit]
     resources "/customers", CustomerController, except: [:new, :edit]
     resources "/orders", OrderController, except: [:new, :edit]
     resources "/addresses", AddressController, except: [:new, :edit]
     resources "/line_items", LineItemController, except: [:new, :edit]
+  end
+
+  scope "/api", ContaComigo.Api do
+    pipe_through :public_api
+
+    post "/sessions", SessionController, :create
   end
 
   scope "/" do

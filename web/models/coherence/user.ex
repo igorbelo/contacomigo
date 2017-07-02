@@ -5,6 +5,7 @@ defmodule ContaComigo.User do
   schema "users" do
     field :name, :string
     field :email, :string
+    field :token, :string
     coherence_schema
 
     timestamps
