@@ -12,10 +12,10 @@ defmodule ContaComigo.Api.CustomerView do
   def render("customer.json", %{customer: customer}) do
     %{
       id: customer.id,
-      first_name: customer.first_name,
-      last_name: customer.last_name,
+      name: customer.name,
       email: customer.email,
-      phone: customer.phone
+      phone: customer.phone,
+      orders: render_many(customer.orders, ContaComigo.Api.OrderView, "customer_order.json")
     }
   end
 end
