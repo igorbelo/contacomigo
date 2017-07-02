@@ -27,6 +27,7 @@ defmodule ContaComigo.Router do
 
   pipeline :protected_api do
     plug :accepts, ["json"]
+    plug ContaComigo.Plugs.Token
   end
 
   # Other scopes may use custom stacks.
