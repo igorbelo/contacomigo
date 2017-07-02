@@ -6,6 +6,7 @@ defmodule ContaComigo.Order do
     belongs_to :customer, ContaComigo.Customer
     belongs_to :store, ContaComigo.Store
     field :paid, :boolean
+    field :date, Ecto.Date
 
     timestamps()
   end
@@ -15,7 +16,7 @@ defmodule ContaComigo.Order do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:customer_id, :store_id, :paid])
-    |> validate_required([:customer_id, :store_id])
+    |> cast(params, [:customer_id, :store_id, :paid, :date])
+    |> validate_required([:customer_id, :store_id, :date])
   end
 end
