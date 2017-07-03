@@ -7,7 +7,7 @@ defmodule OrderSpec do
     it "is invalid without a customer" do
       changeset = Order.changeset(
         %Order{},
-        params_for(:order, customer: nil)
+        params_for(:order, customer_id: nil)
       )
       {error_message, _} = changeset.errors[:customer_id]
       expect(error_message).to eq("can't be blank")
@@ -16,7 +16,7 @@ defmodule OrderSpec do
     it "is valid with a customer" do
       changeset = Order.changeset(
         %Order{},
-        params_with_assocs(:order)
+        params_for(:order)
       )
       expect(changeset.errors).to be_empty()
     end

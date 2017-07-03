@@ -5,9 +5,27 @@ defmodule ContaComigo.Factory do
   alias ContaComigo.Order
   alias ContaComigo.LineItem
   alias ContaComigo.Address
+  alias ContaComigo.Store
+  alias ContaComigo.User
+
+  def user_factory do
+    %User{
+      name: "Igor",
+      email: "#{Ecto.UUID.generate()}@gmail.com",
+      token: "test-token"
+    }
+  end
+
+  def store_factory do
+    %Store{
+      name: "StoreName",
+      user_id: insert(:user).id
+    }
+  end
 
   def product_factory do
     %Product{
+      store_id: insert(:store).id,
       name: "Test Product",
       price: 15.99
     }
@@ -15,8 +33,8 @@ defmodule ContaComigo.Factory do
 
   def customer_factory do
     %Customer{
-      first_name: "Paulo",
-      last_name: "Junior",
+      store_id: insert(:store).id,
+      name: "Paulo Junior",
       email: "fakemail@fakedomain.faketld",
       phone: "99999999999"
     }
@@ -24,21 +42,23 @@ defmodule ContaComigo.Factory do
 
   def order_factory do
     %Order{
-      customer: build(:customer)
+      store_id: insert(:store).id,
+      customer_id: insert(:customer).id,
+      date: Ecto.Date.utc
     }
   end
 
   def line_item_factory do
     %LineItem{
-      order: build(:order),
-      product: build(:product),
+      order_id: insert(:order).id,
+      product_id: insert(:product).id,
       quantity: 1
     }
   end
 
   def address_factory do
     %Address{
-      customer: build(:customer),
+      customer_id: insert(:customer).id,
       state: "StateName",
       city: "CityName",
       zip_code: "29000000",

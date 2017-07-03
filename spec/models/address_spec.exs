@@ -7,7 +7,7 @@ defmodule AddressSpec do
     it "is invalid without a customer" do
       changeset = Address.changeset(
         %Address{},
-        params_for(:address, customer: nil)
+        params_for(:address, customer_id: nil)
       )
       {error_message, _} = changeset.errors[:customer_id]
       expect(error_message).to eq("can't be blank")
@@ -52,7 +52,7 @@ defmodule AddressSpec do
     it "is valid with state, city, zip code, line1 and customer" do
       changeset = Address.changeset(
         %Address{},
-        params_with_assocs(:address)
+        params_for(:address)
       )
       expect(changeset.errors).to be_empty()
     end

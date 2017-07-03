@@ -4,21 +4,12 @@ defmodule CustomerSpec do
   alias ContaComigo.Customer
 
   describe "validations" do
-    it "is invalid without a first name" do
+    it "is invalid without name" do
       changeset = Customer.changeset(
         %Customer{},
-        params_for(:customer, first_name: nil)
+        params_for(:customer, name: nil)
       )
-      {error_message, _} = changeset.errors[:first_name]
-      expect(error_message).to eq("can't be blank")
-    end
-
-    it "is invalid without a last name" do
-      changeset = Customer.changeset(
-        %Customer{},
-        params_for(:customer, last_name: nil)
-      )
-      {error_message, _} = changeset.errors[:last_name]
+      {error_message, _} = changeset.errors[:name]
       expect(error_message).to eq("can't be blank")
     end
 
